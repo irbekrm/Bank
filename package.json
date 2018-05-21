@@ -2,7 +2,6 @@
   "name": "bank",
   "version": "1.0.0",
   "description": "bank app",
-  "main": "app.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha $(find test -name '*.js')"
   },
@@ -23,7 +22,8 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
-    "sinon": "^5.0.7"
+    "sinon": "^5.0.7",
+    "test-console": "^1.1.0"
   },
   "dependencies": {}
 }

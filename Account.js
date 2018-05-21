@@ -1,24 +1,43 @@
-const Transaction = require('./Transaction'),
-      transactions = [];
+const Transaction = require('./Transaction');
 
-exports.statement = _ => {
-  if(!(transactions.length)) return 'No transactions available';
-  return calculate();
-}
+(function(exports) {
+  
+  function account() {
 
-exports.deposit = money => {
-  transactions.push(Transaction.perform({ amount: money, transactionType: 'deposit' }));
-}
+    const transactions = [];
 
-const calculate = _ => {
-  const header = 'date || credit || debit || balance\n'; 
-  return  transactions.reduce((soFar, current) => `${soFar.statement}${current.date} || ${isCredit(current)} || ${isDebit(current)} || ${balance(soFar.balance, current)}\n`, { balance: 0.00, statement: header});
-}
+    var balance = balance || 0;
 
-const isCredit = transaction => transaction.transactionType == 'deposit' ? format(transaction.amount) : '';
+    this.statement = _ => {
+      if(!(transactions.length)) return 'No transactions available';
+      console.log(calculate());
+    }
 
-const isDebit = transaction => transaction.transactionType == 'withdraw' ? format(transaction.amount) : '';
+    this.deposit = money => {
+      balance += money;
+      transactions.push(Transaction.perform({ amount: money, transactionType: 'deposit', balance: format(balance) }));
+    }
 
-const balance = (previous, transaction) => transaction.transactionType == 'deposit' ? format(previous + transaction.amount) : format(previous - transaction.amount);
+    this.withdraw = money => {
+      balance -= money;
+      transactions.push(Transaction.perform({ amount: money, transactionType: 'withdraw', balance: format(balance)}));
+    }
 
-const format = number => number.toFixed(2);
+    const calculate = _ => transactions.reduceRight((str, current) =>
+      str+prettyPrinter({...current, debit: isDebit(current), credit: isCredit(current)}),
+       prettyPrinter({date: 'date', credit: 'credit', debit: 'debit', balance: 'balance'}));
+
+    const isCredit = transaction => transaction.transactionType == 'deposit' ? format(transaction.amount) : '';
+
+    const isDebit = transaction => transaction.transactionType == 'withdraw' ? format(transaction.amount) : '';
+
+    const format = number => number.toFixed(2);
+
+    const prettyPrinter = data => `${data.date} || ${data.credit} || ${data.debit} || ${data.balance}\n`;
+
+  }
+
+ exports.account = account;
+
+})(this);
+
