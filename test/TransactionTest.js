@@ -19,9 +19,9 @@ after(done => {
 
 describe('new transaction', _ => {
   it('creates a new transaction with the current time recorded', done => {
-    const data = { amount: 200.00, transactionType: 'deposit', accountType: 'debit' };
+    const data = { amount: 200.00, transactionType: 'deposit' };
     const transaction = Transaction.perform(data);
-    expect(transaction).to.deep.equal({ amount: 200.00, transactionType: 'deposit', accountType: 'debit', date: now });
+    expect(transaction).to.deep.equal({ amount: 200.00, transactionType: 'deposit', date: now });
     done();
   });
 });
