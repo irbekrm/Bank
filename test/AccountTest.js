@@ -1,9 +1,12 @@
 const chai = require('chai'),
+      assert = require('assert'),
       sinon = require('sinon'),
-      expect = chai.expect;
+      expect = chai.expect,
+      stdout = require('test-console').stdout,
+      header= 'date || credit || debit || balance\n',
+      Account = require('../Account');
 
-var Account,
-    now,
+var now,
     clock;
 
 before(done => {
@@ -12,32 +15,34 @@ before(done => {
   done();
 });
 
-
 beforeEach(done => {
-  Account = require('../Account');
+  account = new Account.account();
   done();
 });
 
 describe('creating new account', _ => {
   it('is initialized with empty list of transactions', done => {
-    expect(Account.statement()).to.equal('No transactions available');
+    expect(account.statement()).to.equal('No transactions available');
     done();
   });
 });
 
 describe('deposit money into account', _ => {
   it('adds the transaction to the list of transactions', done => {
-   Account.deposit(300.00);
-    expect(Account.statement()).to.equal(`date || credit || debit || balance\n${now} || 300.00 ||  || 300.00\n`);
+   account.deposit(300.00);
+    const statement = stdout.inspectSync(_ => account.statement());
+    assert.deepEqual(statement, [`${header}${now} || 300.00 ||  || 300.00\n\n`]);
     done();
   });
 });
    
 describe('withdraw money from account', _ => {
   it('adds the transaction to the list of transactions', done => {
-    Account.deposit(300.00);
-    Account.withdraw(140.00);
-    expect(Account.statement()).to.equal(`date || credit || debit || balance\n${now} || 300.00 ||  || 300.00\n${now} ||  || 140.00 || 160.00 ||\n`);
+    account.deposit(300.00);
+    account.withdraw(140.00);
+    const statement = stdout.inspectSync(_ => account.statement());
+    const expected  = [`${header}${now} ||  || 140.00 || 160.00\n${now} || 300.00 ||  || 300.00\n\n`];
+    assert.deepEqual(statement, expected)
     done();
   });
 });
