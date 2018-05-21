@@ -28,7 +28,7 @@ describe('creating new account', _ => {
 describe('deposit money into account', _ => {
   it('adds the transaction to the list of transactions', done => {
    Account.deposit(300.00);
-    expect(Account.statement()).to.equal(`date || credit || debit || balance\n${now} || 300.00 || || 300.00\n`);
+    expect(Account.statement()).to.equal(`date || credit || debit || balance\n${now} || 300.00 ||  || 300.00\n`);
     done();
   });
 });
