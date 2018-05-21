@@ -32,4 +32,12 @@ describe('deposit money into account', _ => {
     done();
   });
 });
-    
+   
+describe('withdraw money from account', _ => {
+  it('adds the transaction to the list of transactions', done => {
+    Account.deposit(300.00);
+    Account.withdraw(140.00);
+    expect(Account.statement()).to.equal(`date || credit || debit || balance\n${now} || 300.00 ||  || 300.00\n${now} ||  || 140.00 || 160.00 ||\n`);
+    done();
+  });
+});
