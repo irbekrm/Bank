@@ -1,8 +1,8 @@
 exports.prettyPrint = data => {
-  const credit = isCredit(data.transactionType);
-  const debit = isDebit(data.transactionType);
-  const balance = format(balance);
-  return `${data.date} || ${credit} || ${debit} || ${balance}`;
+  const credit = isCredit(data);
+  const debit = isDebit(data);
+  const balance = format(data.balance);
+  return `${data.date} || ${credit} || ${debit} || ${balance}\n`;
 }
 
 const format = number => number.toFixed(2);

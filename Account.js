@@ -23,12 +23,12 @@ const Transaction = require('./Transaction'),
 
     this.withdraw = money => {
       balance -= money;
-      transactions.push(Transaction.perform({ amount: money, transactionType: 'withdraw', balance: format(balance)}));
+      transactions.push(Transaction.perform({ amount: money, transactionType: 'withdraw', balance: balance}));
       return this;
     }
 
     const calculate = _ => transactions.reduceRight((str, current) =>
-      `${str}{TransactionPrinter.prettyPrint(current)}`,
+      `${str}${TransactionPrinter.prettyPrint(current)}`,
       STATEMENTHEADER);
   }
 

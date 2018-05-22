@@ -13,9 +13,10 @@ before(done => {
 });
 
 describe('transaction printer', _ => {
+  const date = Date.now();
   it('pretty prints a transaction', done => {
-    const transaction = { amount: 200.00, date: Date.now(), transactionType: 'withdraw' };
-    const expected = 'date || 200.00 ||  || 200.00\n';
+    const transaction = { balance: 200.00, amount: 200.00, date: date, transactionType: 'withdraw' };
+    const expected = `${date} ||  || 200.00 || 200.00\n`;
     expect(tPrinter.prettyPrint(transaction)).to.equal(expected);
     done();
   });
