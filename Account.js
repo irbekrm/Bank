@@ -1,4 +1,6 @@
-const Transaction = require('./Transaction');
+const Transaction = require('./Transaction'),
+      TransactionPrinter = require('./TransactionPrinter'),
+      STATEMENTHEADER = 'date || credit || debit || balance\n';
 
 (function(exports) {
   
@@ -15,26 +17,19 @@ const Transaction = require('./Transaction');
 
     this.deposit = money => {
       balance += money;
-      transactions.push(Transaction.perform({ amount: money, transactionType: 'deposit', balance: format(balance) }));
+      transactions.push(Transaction.perform({ amount: money, transactionType: 'deposit', balance: balance }));
+      return this;
     }
 
     this.withdraw = money => {
       balance -= money;
       transactions.push(Transaction.perform({ amount: money, transactionType: 'withdraw', balance: format(balance)}));
+      return this;
     }
 
     const calculate = _ => transactions.reduceRight((str, current) =>
-      str+prettyPrinter({...current, debit: isDebit(current), credit: isCredit(current)}),
-       prettyPrinter({date: 'date', credit: 'credit', debit: 'debit', balance: 'balance'}));
-
-    const isCredit = transaction => transaction.transactionType == 'deposit' ? format(transaction.amount) : '';
-
-    const isDebit = transaction => transaction.transactionType == 'withdraw' ? format(transaction.amount) : '';
-
-    const format = number => number.toFixed(2);
-
-    const prettyPrinter = data => `${data.date} || ${data.credit} || ${data.debit} || ${data.balance}\n`;
-
+      `${str}{TransactionPrinter.prettyPrint(current)}`,
+      STATEMENTHEADER);
   }
 
  exports.account = account;

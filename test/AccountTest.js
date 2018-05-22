@@ -7,7 +7,8 @@ const chai = require('chai'),
       Account = require('../Account');
 
 var now,
-    clock;
+    clock,
+    account;
 
 before(done => {
   now = Date.now();
@@ -38,8 +39,7 @@ describe('deposit money into account', _ => {
    
 describe('withdraw money from account', _ => {
   it('adds the transaction to the list of transactions', done => {
-    account.deposit(300.00);
-    account.withdraw(140.00);
+    account.deposit(300.00).withdraw(140.00);
     const statement = stdout.inspectSync(_ => account.statement());
     const expected  = [`${header}${now} ||  || 140.00 || 160.00\n${now} || 300.00 ||  || 300.00\n\n`];
     assert.deepEqual(statement, expected)
