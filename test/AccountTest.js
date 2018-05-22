@@ -11,7 +11,7 @@ var now,
 
 before(done => {
   now = Date.now();
-  formattedDate = moment(now).format("DD/MM/YY");
+  formattedDate = moment(now).format("DD/MM/YYYY");
   done();
 });
 

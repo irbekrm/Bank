@@ -10,7 +10,7 @@ exports.prettyPrint = data => {
 
 const formatFloat = number => number.toFixed(2);
 
-const formatDate = date => moment(date).format("DD/MM/YY");
+const formatDate = date => moment(date).format("DD/MM/YYYY");
 
 const isCredit = data => data.transactionType == 'deposit' ? formatFloat(data.amount) : '';
 
