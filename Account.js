@@ -17,13 +17,13 @@ const Transaction = require('./Transaction'),
     }
 
     this.deposit = money => {
-      balance += money;
+      if(updateBalance(money, 'deposit') === false) return MESSAGES.negAmount;
       transactions.push(Transaction.create({ amount: money, transactionType: 'deposit', balance: balance }));
       return this;
     }
 
     this.withdraw = money => {
-      balance -= money;
+      if(updateBalance(money, 'withdraw') === false) return MESSAGES.negAmount;
       transactions.push(Transaction.create({ amount: money, transactionType: 'withdraw', balance: balance}));
       return this;
     }
@@ -31,6 +31,12 @@ const Transaction = require('./Transaction'),
     const listTransactions = _ => transactions.reduceRight((str, current) =>
       `${str}${TransactionPrinter.prettyPrint(current)}`,
       STATEMENTHEADER);
+    
+    const updateBalance = (amount, type) => {
+      if(amount < 0) return false;
+      if(type == 'withdraw') balance -= amount;
+      if(type == 'deposit') balance += amount;
+    }
   }
 
  exports.account = account;
