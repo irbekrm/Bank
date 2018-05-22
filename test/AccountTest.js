@@ -1,9 +1,10 @@
 const chai = require('chai'),
       expect = chai.expect,
+      sinon = require('sinon'),
       stdout = require('test-console').stdout,
       moment = require('moment'),
       header= 'date || credit || debit || balance\n',
-      Account = require('../src/Account');
+      Account = require('../models/Account');
 
 var now,
     account,
@@ -41,7 +42,7 @@ describe('checking for negative amounts', _ => {
 
 describe('deposit money into account', _ => {
   it('adds the transaction to the list of transactions', done => {
-   account.deposit(300.00);
+    account.deposit(300.00);
     const statement = stdout.inspectSync(_ => account.printStatement());
     const expected = [`${header}${formattedDate} || 300.00 ||  || 300.00\n\n`];
     expect(statement).to.deep.equal(expected);

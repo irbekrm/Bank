@@ -1,7 +1,7 @@
 const chai = require('chai'),
       expect = chai.expect,
       sinon = require('sinon'),
-      Transaction = require('../src/Transaction');
+      Transaction = require('../models/Transaction');
 
 var now,
     clock;

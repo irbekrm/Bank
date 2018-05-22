@@ -1,7 +1,7 @@
 const chai = require('chai'),
       expect = chai.expect,
       moment = require('moment'),
-      tPrinter = require('../src/TransactionPrinter');
+      tPrinter = require('../models/TransactionPrinter');
 
 var formattedDate,
     now
