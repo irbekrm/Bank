@@ -5,11 +5,12 @@ Clone the repository
 
 *npm install* (install dependencies)
 
-Interact with code from *node* console
-
 Test with *npm test* (this will also check code coverage)
 
 Run linter (ESLint) *npm run lint*
+
+Interact with code from *node* console
+
 
 <img src="images/bank.png" height="250"/>
 
