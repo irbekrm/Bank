@@ -21,6 +21,9 @@
   "homepage": "https://github.com/irbekrm/Bank#readme",
   "devDependencies": {
     "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "eslint-config-strongloop": "^2.1.0",
+    "eslint-plugin-node": "^6.0.1",
     "mocha": "^5.2.0",
     "sinon": "^5.0.7",
     "test-console": "^1.1.0"
