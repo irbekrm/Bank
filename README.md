@@ -3,11 +3,13 @@
 ### Use
 Clone the repository
 
-Run *npm install*
+*npm install* (install dependencies)
 
 Interact with code from *node* console
 
-To run tests do *npm test*
+Test with *npm test* (this will also check code coverage)
+
+Run linter (ESLint) *npm run lint*
 
 ### Requirements
 
@@ -33,4 +35,4 @@ date || credit || debit || balance
 ```
 
 ### Technologies
-Javascript. Also Chai, Mocha and Sinon for testing
+Javascript. Also Chai, Mocha and Sinon for testing and ESLint linter.
