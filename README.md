@@ -5,11 +5,16 @@ Clone the repository
 
 *npm install* (install dependencies)
 
-Interact with code from *node* console
-
 Test with *npm test* (this will also check code coverage)
 
 Run linter (ESLint) *npm run lint*
+
+Interact with code from *node* console
+
+
+<img src="images/bank.png" height="250"/>
+
+
 
 ### Requirements
 
@@ -17,6 +22,8 @@ Run linter (ESLint) *npm run lint*
 * Deposits, withdrawal.
 * Account statement (date, amount, balance) printing.
 * Data can be kept in memory (it doesn't need to be stored to a database or anything).
+
+
 
 ### Acceptance criteria
 
