@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "bank app",
   "scripts": {
-    "test": "./node_modules/.bin/mocha $(find test -name '*.js')"
+    "test": "nyc ./node_modules/.bin/mocha $(find test -name '*.js')"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "eslint-config-strongloop": "^2.1.0",
     "eslint-plugin-node": "^6.0.1",
     "mocha": "^5.2.0",
+    "nyc": "^11.8.0",
     "sinon": "^5.0.7",
     "test-console": "^1.1.0"
   },

@@ -1,5 +1,9 @@
 {"extends": "strongloop",
   "parserOptions": {
-    "ecmaVersion": 6
+    "ecmaVersion": 2018
+  },
+
+  "rules": {
+    "one-var": [2,"consecutive"]
   }
 }

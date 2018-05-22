@@ -1,17 +1,21 @@
+'use strict';
+
 const moment = require('moment');
 
 exports.prettyPrint = data => {
-  const credit = isCredit(data);
-  const debit = isDebit(data);
-  const date = formatDate(data.date);
-  const balance = formatFloat(data.balance);
+  const credit = isCredit(data),
+    debit = isDebit(data),
+    date = formatDate(data.date),
+    balance = formatFloat(data.balance);
   return `${date} || ${credit} || ${debit} || ${balance}\n`;
-}
+};
 
-const formatFloat = number => number.toFixed(2);
+const formatFloat = number => number.toFixed(2),
 
-const formatDate = date => moment(date).format("DD/MM/YYYY");
+  formatDate = date => moment(date).format('DD/MM/YYYY'),
 
-const isCredit = data => data.transactionType == 'deposit' ? formatFloat(data.amount) : '';
+  isCredit = data => data.transactionType === 'deposit' ?
+    formatFloat(data.amount) : '',
 
-const isDebit = data => data.transactionType == 'withdraw' ? formatFloat(data.amount) : '';
+  isDebit = data => data.transactionType === 'withdraw' ?
+    formatFloat(data.amount) : '';
