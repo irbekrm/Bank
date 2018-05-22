@@ -1,5 +1,4 @@
 const chai = require('chai'),
-      assert = require('assert'),
       sinon = require('sinon'),
       expect = chai.expect,
       stdout = require('test-console').stdout,
@@ -44,7 +43,9 @@ describe('deposit money into account', _ => {
   it('adds the transaction to the list of transactions', done => {
    account.deposit(300.00);
     const statement = stdout.inspectSync(_ => account.printStatement());
-    assert.deepEqual(statement, [`${header}${now} || 300.00 ||  || 300.00\n\n`]);
+    const expected = [`${header}${now} || 300.00 ||  || 300.00\n\n`];
+    expect(statement).to.deep.equal(expected);
+    //assert.deepEqual(statement, [`${header}${now} || 300.00 ||  || 300.00\n\n`]);
     done();
   });
 });
@@ -54,7 +55,7 @@ describe('withdraw money from account', _ => {
     account.deposit(300.00).withdraw(140.00);
     const statement = stdout.inspectSync(_ => account.printStatement());
     const expected  = [`${header}${now} ||  || 140.00 || 160.00\n${now} || 300.00 ||  || 300.00\n\n`];
-    assert.deepEqual(statement, expected)
+    expect(statement).to.deep.equal(expected);
     done();
   });
 });
