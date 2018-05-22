@@ -3,7 +3,7 @@ const chai = require('chai'),
       expect = chai.expect,
       stdout = require('test-console').stdout,
       header= 'date || credit || debit || balance\n',
-      Account = require('../Account');
+      Account = require('../src/Account');
 
 var now,
     clock,
@@ -45,7 +45,6 @@ describe('deposit money into account', _ => {
     const statement = stdout.inspectSync(_ => account.printStatement());
     const expected = [`${header}${now} || 300.00 ||  || 300.00\n\n`];
     expect(statement).to.deep.equal(expected);
-    //assert.deepEqual(statement, [`${header}${now} || 300.00 ||  || 300.00\n\n`]);
     done();
   });
 });

@@ -1,7 +1,7 @@
 const chai = require('chai'),
       sinon = require('sinon'),
       expect = chai.expect,
-      tPrinter = require('../TransactionPrinter');
+      tPrinter = require('../src/TransactionPrinter');
 
 var now,
     clock;
