@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "bank app",
   "scripts": {
-    "test": "nyc ./node_modules/.bin/mocha $(find test -name '*.js')"
+    "test": "nyc ./node_modules/.bin/mocha $(find test -name '*.js')",
+    "lint": "./node_modules/.bin/eslint ."
   },
   "repository": {
     "type": "git",
