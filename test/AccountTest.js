@@ -1,17 +1,14 @@
 const chai = require('chai'),
-      sinon = require('sinon'),
       expect = chai.expect,
       stdout = require('test-console').stdout,
       header= 'date || credit || debit || balance\n',
       Account = require('../src/Account');
 
 var now,
-    clock,
     account;
 
 before(done => {
   now = Date.now();
-  clock = sinon.useFakeTimers(now);
   done();
 });
 

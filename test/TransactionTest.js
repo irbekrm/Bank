@@ -1,13 +1,13 @@
 const chai = require('chai'),
-      sinon = require('sinon'),
       expect = chai.expect,
+      sinon = require('sinon'),
       Transaction = require('../src/Transaction');
 
 var now,
     clock;
 
 before(done => {
-  now = Date.now()
+  now = Date.now();
   clock = sinon.useFakeTimers(now);
   done();
 });
