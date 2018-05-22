@@ -1,14 +1,17 @@
 const chai = require('chai'),
       expect = chai.expect,
       stdout = require('test-console').stdout,
+      moment = require('moment'),
       header= 'date || credit || debit || balance\n',
       Account = require('../src/Account');
 
 var now,
-    account;
+    account,
+    formattedDate;
 
 before(done => {
   now = Date.now();
+  formattedDate = moment(now).format("DD/MM/YY");
   done();
 });
 
@@ -40,7 +43,7 @@ describe('deposit money into account', _ => {
   it('adds the transaction to the list of transactions', done => {
    account.deposit(300.00);
     const statement = stdout.inspectSync(_ => account.printStatement());
-    const expected = [`${header}${now} || 300.00 ||  || 300.00\n\n`];
+    const expected = [`${header}${formattedDate} || 300.00 ||  || 300.00\n\n`];
     expect(statement).to.deep.equal(expected);
     done();
   });
@@ -50,7 +53,7 @@ describe('withdraw money from account', _ => {
   it('adds the transaction to the list of transactions', done => {
     account.deposit(300.00).withdraw(140.00);
     const statement = stdout.inspectSync(_ => account.printStatement());
-    const expected  = [`${header}${now} ||  || 140.00 || 160.00\n${now} || 300.00 ||  || 300.00\n\n`];
+    const expected  = [`${header}${formattedDate} ||  || 140.00 || 160.00\n${formattedDate} || 300.00 ||  || 300.00\n\n`];
     expect(statement).to.deep.equal(expected);
     done();
   });
