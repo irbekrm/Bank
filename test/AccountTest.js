@@ -23,7 +23,7 @@ beforeEach(done => {
 
 describe('creating new account', _ => {
   it('is initialized with empty list of transactions', done => {
-    expect(account.statement()).to.equal('No transactions available');
+    expect(account.printStatement()).to.equal('No transactions available');
     done();
   });
 });
@@ -43,7 +43,7 @@ describe('checking for negative amounts', _ => {
 describe('deposit money into account', _ => {
   it('adds the transaction to the list of transactions', done => {
    account.deposit(300.00);
-    const statement = stdout.inspectSync(_ => account.statement());
+    const statement = stdout.inspectSync(_ => account.printStatement());
     assert.deepEqual(statement, [`${header}${now} || 300.00 ||  || 300.00\n\n`]);
     done();
   });
@@ -52,7 +52,7 @@ describe('deposit money into account', _ => {
 describe('withdraw money from account', _ => {
   it('adds the transaction to the list of transactions', done => {
     account.deposit(300.00).withdraw(140.00);
-    const statement = stdout.inspectSync(_ => account.statement());
+    const statement = stdout.inspectSync(_ => account.printStatement());
     const expected  = [`${header}${now} ||  || 140.00 || 160.00\n${now} || 300.00 ||  || 300.00\n\n`];
     assert.deepEqual(statement, expected)
     done();

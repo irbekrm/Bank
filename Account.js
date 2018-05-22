@@ -1,6 +1,7 @@
 const Transaction = require('./Transaction'),
       TransactionPrinter = require('./TransactionPrinter'),
-      STATEMENTHEADER = 'date || credit || debit || balance\n';
+      STATEMENTHEADER = 'date || credit || debit || balance\n',
+      MESSAGES = { noTransactions: 'No transactions available', negAmount: 'Invalid amount' };
 
 (function(exports) {
   
@@ -10,24 +11,24 @@ const Transaction = require('./Transaction'),
 
     var balance = balance || 0;
 
-    this.statement = _ => {
-      if(!(transactions.length)) return 'No transactions available';
-      console.log(calculate());
+    this.printStatement = _ => {
+      if(!(transactions.length)) return MESSAGES.noTransactions;
+      console.log(listTransactions());
     }
 
     this.deposit = money => {
       balance += money;
-      transactions.push(Transaction.perform({ amount: money, transactionType: 'deposit', balance: balance }));
+      transactions.push(Transaction.create({ amount: money, transactionType: 'deposit', balance: balance }));
       return this;
     }
 
     this.withdraw = money => {
       balance -= money;
-      transactions.push(Transaction.perform({ amount: money, transactionType: 'withdraw', balance: balance}));
+      transactions.push(Transaction.create({ amount: money, transactionType: 'withdraw', balance: balance}));
       return this;
     }
 
-    const calculate = _ => transactions.reduceRight((str, current) =>
+    const listTransactions = _ => transactions.reduceRight((str, current) =>
       `${str}${TransactionPrinter.prettyPrint(current)}`,
       STATEMENTHEADER);
   }

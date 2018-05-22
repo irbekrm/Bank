@@ -1,1 +1,1 @@
-exports.perform = data => ({ ...data, date: Date.now() });
+exports.create = data => ({ ...data, date: Date.now() });
