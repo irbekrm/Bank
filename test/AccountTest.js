@@ -28,6 +28,18 @@ describe('creating new account', _ => {
   });
 });
 
+describe('checking for negative amounts', _ => {
+  it('does not allow to withdraw negative amount', done => {
+    expect(account.withdraw(-400.00)).to.equal('Invalid amount');
+    done();
+  });
+
+  it('does not allow to deposit negative amount', done => {
+    expect(account.deposit(-500.00)).to.equal('Invalid amount');
+    done();
+  });
+});
+
 describe('deposit money into account', _ => {
   it('adds the transaction to the list of transactions', done => {
    account.deposit(300.00);
