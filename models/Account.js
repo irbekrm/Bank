@@ -2,9 +2,7 @@
 
 const Transaction = require('./Transaction'),
   TransactionPrinter = require('./TransactionPrinter'),
-  AccountPrinter = require('./AccountPrinter'),
-  MESSAGES = { noTransactions: 'No transactions available',
-  negAmount: 'Invalid amount' };
+  AccountPrinter = require('./AccountPrinter');
 
 (function(exports) {
 
@@ -22,20 +20,19 @@ const Transaction = require('./Transaction'),
       };
 
     this.printStatement = _ => {
-      if (!(transactions.length)) return MESSAGES.noTransactions;
       const t = AccountPrinter.prettyPrint(transactions);
       console.log(t);
     };
 
     this.deposit = money => {
-      if (updateBalance(money, 'deposit') === false) return MESSAGES.negAmount;
+      if (updateBalance(money, 'deposit') === false) return AccountPrinter.negativeError();
       transactions.push(Transaction.create(
         { amount: money, transactionType: 'deposit', balance: balance }));
       return this;
     };
 
     this.withdraw = money => {
-      if (updateBalance(money, 'withdraw') === false) return MESSAGES.negAmount;
+      if (updateBalance(money, 'withdraw') === false) return AccountPrinter.negativeError();
       transactions.push(Transaction.create(
         { amount: money, transactionType: 'withdraw', balance: balance}));
       return this;

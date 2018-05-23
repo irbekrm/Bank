@@ -27,7 +27,8 @@ beforeEach(function(done){
 
 describe('creating new account', _ => {
   it('is initialized with empty list of transactions', done => {
-    expect(account.printStatement()).to.equal('No transactions available');
+    const statement = stdout.inspectSync(_ => account.printStatement());
+    expect(statement[0]).to.equal('No transactions available\n');
     done();
   });
 });
