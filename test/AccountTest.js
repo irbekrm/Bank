@@ -46,10 +46,6 @@ describe('checking for negative amounts', _ => {
 
 describe('deposit money into account', function() {
   it('adds the transaction to the list of transactions', function(done){
-    sinon.stub(TransactionPrinter, 'prettyPrint')
-      .onCall(0).returns(`${formattedDate} || 300.00 ||  || 300.00\n`)
-      .onCall(1).returns(`${formattedDate} ||  || 140.00 || 160.00\n`)
-      .onCall(2).returns(`${formattedDate} || 300.00 ||  || 300.00\n`);
     account.deposit(300.00);
     const statement = stdout.inspectSync(_ => account.printStatement()),
       expected = [`${header}${formattedDate} || 300.00 ||  || 300.00\n\n`];

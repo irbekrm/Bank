@@ -2,9 +2,9 @@
 
 const Transaction = require('./Transaction'),
   TransactionPrinter = require('./TransactionPrinter'),
-  STATEMENTHEADER = 'date || credit || debit || balance\n',
+  AccountPrinter = require('./AccountPrinter'),
   MESSAGES = { noTransactions: 'No transactions available',
-    negAmount: 'Invalid amount' };
+  negAmount: 'Invalid amount' };
 
 (function(exports) {
 
@@ -14,9 +14,6 @@ const Transaction = require('./Transaction'),
 
     const transactions = [],
 
-      listTransactions = _ => transactions.reduceRight((str, current) =>
-        `${str}${TransactionPrinter.prettyPrint(current)}`,
-      STATEMENTHEADER),
 
       updateBalance = (amount, type) => {
         if (amount < 0) return false;
@@ -26,7 +23,8 @@ const Transaction = require('./Transaction'),
 
     this.printStatement = _ => {
       if (!(transactions.length)) return MESSAGES.noTransactions;
-      console.log(listTransactions());
+      const t = AccountPrinter.prettyPrint(transactions);
+      console.log(t);
     };
 
     this.deposit = money => {
