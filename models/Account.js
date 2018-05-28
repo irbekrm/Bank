@@ -4,9 +4,9 @@ const Transaction = require('./Transaction'),
   TransactionPrinter = require('./TransactionPrinter'),
   AccountPrinter = require('./AccountPrinter');
 
-(function(exports) {
+module.exports = {
 
-  function Account() {
+  Account: function() {
 
     var balance = 0;
 
@@ -39,8 +39,4 @@ const Transaction = require('./Transaction'),
     };
 
   }
-
-  exports.Account = Account;
-
-})(this);
-
+}
