@@ -4,9 +4,7 @@ const chai = require('chai'),
   expect = chai.expect,
   stdout = require('test-console').stdout,
   moment = require('moment'),
-  sinon = require('sinon'),
   header = 'date || credit || debit || balance\n',
-  TransactionPrinter = require('../models/TransactionPrinter'),
   Account = require('../models/Account');
 
 var now,

@@ -4,6 +4,7 @@
   },
 
   "rules": {
-    "one-var": [2,"consecutive"]
+    "one-var": [2,"consecutive"],
+    "indent": "off"
   }
 }

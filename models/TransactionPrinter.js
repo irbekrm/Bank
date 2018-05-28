@@ -18,6 +18,5 @@ module.exports = {
     date = formatDate(data.date),
     balance = formatFloat(data.balance);
   return `${date} || ${credit} || ${debit} || ${balance}\n`;
-}
-}
-
+  },
+};

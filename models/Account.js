@@ -1,7 +1,6 @@
 'use strict';
 
 const Transaction = require('./Transaction'),
-  TransactionPrinter = require('./TransactionPrinter'),
   AccountPrinter = require('./AccountPrinter');
 
 module.exports = {
@@ -25,18 +24,21 @@ module.exports = {
     };
 
     this.deposit = money => {
-      if (updateBalance(money, 'deposit') === false) return AccountPrinter.negativeError();
+      if (updateBalance(money, 'deposit') === false){
+        return AccountPrinter.negativeError();
+      };
       transactions.push(Transaction.create(
-        { amount: money, transactionType: 'deposit', balance: balance }));
+      { amount: money, transactionType: 'deposit', balance: balance }));
       return this;
     };
 
     this.withdraw = money => {
-      if (updateBalance(money, 'withdraw') === false) return AccountPrinter.negativeError();
+      if (updateBalance(money, 'withdraw') === false){
+        return AccountPrinter.negativeError();
+      }
       transactions.push(Transaction.create(
-        { amount: money, transactionType: 'withdraw', balance: balance}));
+      { amount: money, transactionType: 'withdraw', balance: balance}));
       return this;
     };
-
-  }
-}
+  },
+};
