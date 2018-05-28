@@ -6,9 +6,9 @@ const Transaction = require('./Transaction'),
 
 (function(exports) {
 
-  function account() {
+  function Account() {
 
-    var balance = balance || 0;
+    var balance = 0;
 
     const transactions = [],
 
@@ -40,7 +40,7 @@ const Transaction = require('./Transaction'),
 
   }
 
-  exports.Account = account;
+  exports.Account = Account;
 
 })(this);
 
