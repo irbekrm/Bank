@@ -9,7 +9,7 @@ Tech test for Makers Academy.
 From the given description:
 
 >* You should be able to interact with your code via a REPL like IRB or the JavaScript console.  (You don't need to implement
->*a command line interface that takes input from STDIN.)
+> a command line interface that takes input from STDIN.)
 >* Deposits, withdrawal.
 >* Account statement (date, amount, balance) printing.
 >* Data can be kept in memory (it doesn't need to be stored to a database or anything).
@@ -29,6 +29,14 @@ From the given description:
 >10/01/2012 || 1000.00 || || 1000.00
 >```
 
+### Solution
+
+I structured the app using npm modules. The underlying logics is implemented using two models-
+Account and Transaction. Each has a corresponding view module that is responsible for pretty printing the description
+of and instance of the model.
+My main goal was to achieve clear separation of concerns within the app and write clear, elegant, maintainable and well-tested code.
+
+
 ### Use
 
 Clone the repository
@@ -39,15 +47,17 @@ Clone the repository
 
 *npm run lint* - run ESLint linter
 
-Interact with code from *node* console
+**Interact with the code:**
 
+*npm start* - will start a node console with Account class pre-loaded
 
-<img src="images/bank.png" height="250"/>
+`const account = new Account(); // create a new Account instance`
 
+`account.deposit(300.00); // deposit £300.00`
 
+`account.withdraw(130.00); //withdraw £130.00`
 
-
-
+`account.printStatement(); // view the list of transactions`
 
 ### Technologies
 
