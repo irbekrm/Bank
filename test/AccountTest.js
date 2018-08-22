@@ -45,7 +45,7 @@ describe('checking for negative amounts', _ => {
 
 describe('deposit money into account', function() {
   it('adds the transaction to the list of transactions', function(done){
-    account.deposit(500.00);
+    account.deposit(300.00);
     const statement = stdout.inspectSync(_ => account.printStatement()),
       expected = [`${header}${formattedDate} || 300.00 ||  || 300.00\n\n`];
     expect(statement).to.deep.equal(expected);
