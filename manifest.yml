@@ -1,0 +1,7 @@
+---
+applications:
+- name: bank
+  memory: 512M
+  instances: 1
+  health-check-type: process
+  no-route: true
